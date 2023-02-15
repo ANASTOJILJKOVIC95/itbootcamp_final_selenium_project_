@@ -23,8 +23,7 @@ public class MessagePopUpPage extends BasePage {
     }
 
     public WebElement verifyAccountPopUp() {
-        return driver.findElement
-                (By.xpath("//div[contains(@class,'dlgVerifyAccount')]"));
+        return driver.findElement(By.xpath("//*[contains(text(),'IMPORTANT: Verify your account')]"));
     }
 
     public WebElement verifyHeader() {
@@ -49,7 +48,9 @@ public class MessagePopUpPage extends BasePage {
                 + "]"))));
         return driver.findElement(By.xpath("//*[contains(text(),'Saved successfully')]"));
     }
-
+    public WebElement getErrorMessage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@role='status']")));
+        return driver.findElement(By.xpath("//*[@role='status']"));}
 
     public WebElement getNewCityField() {
         return driver.findElement(

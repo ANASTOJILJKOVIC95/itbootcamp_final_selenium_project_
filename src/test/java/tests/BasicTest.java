@@ -35,6 +35,7 @@ public abstract class BasicTest {
     protected LoginPage loginPage;
     protected NavPage navPage;
     protected SignupPage signupPage;
+    protected ProfilePage profilePage;
     protected CitiesPage citiesPage;
     protected MessagePopUpPage messagePopUpPage;
     @BeforeClass
@@ -52,6 +53,7 @@ public abstract class BasicTest {
         this.navPage = new NavPage(driver, wait);
         this.signupPage = new SignupPage(driver,wait);
         this.citiesPage = new CitiesPage(driver,wait);
+        this.profilePage = new ProfilePage(driver,wait);
         this.messagePopUpPage = new MessagePopUpPage(driver,wait);
         this.random = new Random();
         int broj = random.nextInt(100);

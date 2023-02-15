@@ -29,6 +29,28 @@ public class SignupTests extends BasicTest{
                 "This attribute does not have 'password' value");
     }
     @Test(priority = 3)
+    @Description("Test #3: Displays errors when user already exists")
+    public void displaysErrorWhenUserAlreadyExists(){
+        navPage.getSignUpButton().click();
+        signupPage.getNameInput().sendKeys("Another User");
+        signupPage.getEmailInput().sendKeys("admin@admin.com");
+        signupPage.getPasswordInput().sendKeys("12345");
+        signupPage.getConfirmPasswordInput().sendKeys("12345");
+        signupPage.getSignMeUpButton().click();
+
+        Assert.assertTrue(helper.elementExist(driver, By.xpath("//div[@class ='v-snack__content']")),
+                "Error page is not displayed");
+
+
+        Assert.assertEquals(messagePopUpPage.getErrorMessage().getText(),
+                "E-mail already exists",
+                "Error message is not as expected");
+
+        Assert.assertEquals(driver.getCurrentUrl(),
+                baseUrl+"signup",
+                "Not on login page.");
+    }
+    @Test(priority = 4)
     @Description("Test #4: Signup")
     public void singup() {
         navPage.getSignUpButton().click();
@@ -45,29 +67,6 @@ public class SignupTests extends BasicTest{
         messagePopUpPage.closeVerifyButton().click();
         navPage.getLogoutButton().click();
 
-    }
-    @Test(priority = 4)
-    @Description("Test #3: Displays errors when user already exists")
-    public void displaysErrorWhenUserAlreadyExists(){
-        navPage.getSignUpButton().click();
-        signupPage.getNameInput().sendKeys("Ana Stojiljkovic");
-        signupPage.getEmailInput().sendKeys(email);
-        signupPage.getPasswordInput().sendKeys("12345");
-        signupPage.getConfirmPasswordInput().sendKeys("12345");
-        signupPage.getSignMeUpButton().click();
-
-        Assert.assertTrue(helper.elementExist(driver, By.xpath("//div[@class ='v-snack__content']")),
-                "Error page is not displayed");
-
-
-        Assert.assertEquals(driver.findElement(By.xpath("//div[@class ='v-snack__content']/ul/li")).
-                        getText(),
-                "E-mail already exists",
-                "Error message is not as expected");
-
-        Assert.assertEquals(driver.getCurrentUrl(),
-                baseUrl+"signup",
-                "Not on login page.");
     }
 }
 
