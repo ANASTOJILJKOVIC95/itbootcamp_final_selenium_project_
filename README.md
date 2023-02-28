@@ -1,4 +1,4 @@
-## Final project for ITBootCamp 
+## Final project for ITBootcamp 
 This exercise is one of the final projects given to me by ITBootcamp (www.itbootcamp.rs). It's an automation exercise done using Selenium and TestNG. 
 The project was built in  Java 18 and Maven environment. 
 The tested website is https://vue-demo.daniel-avellaneda.com.
